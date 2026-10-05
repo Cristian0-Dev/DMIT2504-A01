@@ -11,9 +11,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // If I want to reference the color scheme in component-specific props in the theme data,
+    // I need to create the colorScheme ahead of time, otherwise it's being created at the same time as
+    // other ThemeData props are trying to reference it.
+    final colorScheme = ColorScheme.fromSeed(seedColor: Colors.pink);
+
     return MaterialApp(
+      theme: ThemeData(
+        colorScheme: colorScheme,
+        scaffoldBackgroundColor: colorScheme.primary,
+      ),
       home: Scaffold(
-        backgroundColor: Colors.blueGrey.shade200,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch, // like a flexbox!
                               // .stretch alignment means children fill the entire width
@@ -21,7 +29,7 @@ class MyApp extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(16.0),
               child: const Text(
-                'My Recipe App',
+                'my cool recipe app',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 32,
