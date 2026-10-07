@@ -2,6 +2,7 @@ class Person {
   late String _name;
   late int _age;
 
+// constructir
   Person(String name, int age) {
     this.name = name;
     this.age = age;
